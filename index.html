@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <form>
+    <input type="text" id="display" disabled>
+    <br><br>
+    <input type="button" value="1" onclick="addNumber(1)">
+    <input type="button" value="2" onclick="addNumber(2)">
+    <input type="button" value="3" onclick="addNumber(3)">
+    <input type="button" value="+" onclick="addOperator('+')">
+    <br><br>
+    <input type="button" value="4" onclick="addNumber(4)">
+    <input type="button" value="5" onclick="addNumber(5)">
+    <input type="button" value="6" onclick="addNumber(6)">
+    <input type="button" value="-" onclick="addOperator('-')">
+    <br><br>
+    <input type="button" value="7" onclick="addNumber(7)">
+    <input type="button" value="8" onclick="addNumber(8)">
+    <input type="button" value="9" onclick="addNumber(9)">
+    <input type="button" value="*" onclick="addOperator('*')">
+    <br><br>
+    <input type="button" value="0" onclick="addNumber(0)">
+    <input type="button" value="." onclick="addNumber('.')">
+    <input type="button" value="=" onclick="calculate()">
+    <input type="button" value="/" onclick="addOperator('/')">
+    <br><br>
+    <input type="reset" value="Clear">
+  </form>
+
+  <script>
+    // global variables to store the current number and operator
+    let currentNumber = '';
+    let currentOperator = '';
+
+    // function to add a number to the current number
+    function addNumber(num) {
+      currentNumber += num;
+      document.getElementById('display').value = currentNumber;
+    }
+
+    // function to add an operator
+    function addOperator(operator) {
+      // store the current number in the global variable
+      currentOperator = operator;
+
+      // clear the current number and update the display
+      currentNumber = '';
+      document.getElementById('display').value = currentOperator;
+    }
+
+    // function to calculate the result
+    function calculate() {
+      // convert the current number and the previous result to numbers
+      let current = parseFloat(currentNumber);
+      let previous = parseFloat(document.getElementById('display').value);
+
+      // perform the calculation based on the current operator
+      if (currentOperator === '+') {
+        result = previous + current;
+      } else if (currentOperator === '-') {
+        result = previous - current;
+      } else if (currentOperator === '*') {
+        result = previous * current;
+      } else if (currentOperator === '/') {
+        result = previous / current;
